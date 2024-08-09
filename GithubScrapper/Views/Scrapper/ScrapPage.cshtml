@@ -1,0 +1,43 @@
+﻿@model IEnumerable<RepositoryData>
+@{
+	ViewData["Title"] = "ScrapPage";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="chart-box">
+				<h4>------</h4>
+
+				<div class="bs-example" data-example-id="bordered-table">
+					<form method="post">
+						<label>Hesap İsmi:</label>
+						<h3>@ViewBag.name</h3>
+						<label>Hesap Takma İsim:</label>
+						<h3>@ViewBag.nickname</h3>
+						<label>Repository Sayısı</label>
+						<h3>@ViewBag.repositoryCount</h3>
+						
+						@foreach (var item in Model)
+						{
+							<div>
+								<p>@item.RepositoryName</p>
+								<p>@item.MostUsedLanguage</p>
+								<p>@item.Visibility</p>
+								<p>@item.UpdateDate</p>
+							</div>
+						}
+
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+
+
+
+
