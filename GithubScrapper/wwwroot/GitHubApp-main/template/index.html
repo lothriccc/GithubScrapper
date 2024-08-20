@@ -1,15 +1,10 @@
-﻿
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="~/GitHubApp-main/static/css/style.css">
+    <link rel="stylesheet" href="../static/css/style.css">
     <title>Github</title>
 </head>
 
@@ -22,20 +17,22 @@
         <div class="section__container">
 
             <div class="section__container_head">
-                <img src="~/GitHubApp-main/static/Image/logo.png" alt="">
+                <img src="../static/Image/logo.png" alt="">
                 <span class="title">Github Bilgi Toplama Aracı | Ar-Ge Ekibi </span>
-                <form asp-action="Search" method="post" class="form">
+                <form action="" class="form">
                     <label for="">Kullanıcı adı</label>
-                    <input type="text" name="parameter" placeholder="ar-ge Ekibi">
+                    <input type="text" name="" id="" placeholder="ar-ge Ekibi">
                     <button>Ara</button>
                 </form>
             </div>
+
         </div>
+
     </section>
-    <script src="~/GitHubApp-main/static/Javascript/script.js"></script>
+
+
+
+    <script src="../static/Javascript/script.js"></script>
 </body>
+
 </html>
-@*<form asp-action="Search" method="post">
-    <input type="text" name="parameter" placeholder="örn: lothriccc" />
-    <button class="btn btn-success" type="submit">Search</button>
-</form>*@

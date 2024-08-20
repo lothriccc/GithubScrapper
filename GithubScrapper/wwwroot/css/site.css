@@ -16,3 +16,64 @@ html {
 body {
   margin-bottom: 60px;
 }
+.buton-kapsayici {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.detaylar-buton {
+    width: 100%;
+    padding: 5px; /* Butonun ince olmasýný saðlar */
+    background-color: #2b2b2b; /* Resimdeki arka plana uygun koyu bir renk */
+    color: #c7c7c7; /* Açýk gri renk, yazýnýn öne çýkmasýný saðlar */
+    border: 1px solid #4a4a4a;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none; /* Yazýnýn altýný çizmez */
+    outline: none; /* Butona týklanýldýðýnda mavi çevre çizgisini kaldýrýr */
+}
+
+    .detaylar-buton:hover {
+        background-color: #1e1e1e; /* Üzerine gelince arka plan rengini biraz koyulaþtýrýr */
+        color: #ffffff; /* Yazý rengini beyaz yapar */
+    }
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.repository-info {
+    margin-bottom: 20px;
+}
+
+.repo-details p {
+    margin: 5px 0;
+}
+
+.repository-content {
+    margin-bottom: 20px;
+}
+
+#file-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+    #file-list li {
+        margin: 5px 0;
+        padding: 5px;
+        border: 1px solid #ddd;
+    }
+
+.commit-count-display {
+    margin-top: 10px;
+}
+
+.language-usage {
+    width: 400px;
+}

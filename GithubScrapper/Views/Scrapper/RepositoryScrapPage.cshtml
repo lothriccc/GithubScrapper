@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="~/GitHubApp-main/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<link href="~/css/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+	<title>Github</title>
+</head>
+
+<body>
+	<nav class="navbar">
+		<span>Ar-Ge Ekibi</span>
+	</nav>
+	<section class="section">
+
+		<div class="section__container">
+            
+            
+            
+                <div class="repository-info">
+                    <h1>Repository Name</h1>
+                    <div class="repo-details">
+                        <p>Commits: <span id="commit-count">0</span></p>
+                        <p>Branches: <span id="branch-count">0</span></p>
+                        <p>Stars: <span id="star-count">0</span></p>
+                        <p>Watchers: <span id="watching-count">0</span></p>
+                        <p>Forks: <span id="fork-count">0</span></p>
+                    </div>
+                </div>
+
+                <div class="repository-content">
+                    <h2>Repository Files</h2>
+                    <ul id="file-list">
+                        <!-- Files will be dynamically inserted here -->
+                    </ul>
+                    <div class="commit-count-display">
+                        <p>Total Commits: <span id="total-commit-count">0</span></p>
+                    </div>
+                </div>
+
+                <div class="language-usage">
+                    <h2>Language Usage</h2>
+                    <canvas id="languageChart"></canvas>
+                </div>
+
+                
+           
+      
+		</div>
+
+	</section>
+
+
+    <script src="script.js"></script>
+	<script src="~/GitHubApp-main/static/Javascript/script.js"></script>
+<script src="~/githubapp-main/static/javascript/script.js"></script>
+</body>
+
+</html>

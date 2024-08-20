@@ -1,0 +1,186 @@
+@import 'partials/imports';
+
+$backgound__color:#121219;
+$primary__color:#171720;
+
+
+body {
+    background-color: $backgound__color;
+}
+
+
+.navbar {
+    background-color: $primary__color;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+        color: #b7b7f5;
+        font-family:  serif;
+        font-weight: lighter;
+        font-size: 0.9rem;
+    }
+}
+
+.accordion{
+    display: none;
+}
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1rem;
+    
+
+   
+    &__container {
+        box-shadow: rgba(76, 72, 126, 0.15) 1.95px 1.95px 2.6px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        width: 80%;
+        background-color:$primary__color;
+        padding: 1rem;
+        border: 1px solid #cccccc2a;
+
+        @include breakpoint(lg){
+            width: 50%;
+        }
+       
+        &_head {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+
+            img {
+                width: 90%;
+                height: auto;
+                object-fit: cover;
+                object-position: center;
+
+                @include breakpoint(lg){
+                    width: 50%;
+                }
+            }
+            .title {
+                font-family:Georgia, 'Times New Roman', Times, serif ;
+                margin-top: 1rem;
+                color: #ccc;
+                font-weight: 100;
+                font-style: italic;
+            }
+
+            .form {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                width: 100%;
+                margin-top: 1.2rem;
+
+                @include breakpoint(lg){
+                    flex-direction: row;
+                    align-items: center;
+                }
+
+                label {
+                    font-size: 0.9rem;
+                    color: #ccc;
+                    text-wrap: nowrap;
+                    margin-right: 10px;
+                    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                    font-weight: 500;
+                }
+                input {
+                    width: 100%;
+                    background-color: transparent;
+                    border: 1px solid #cccccc2a;
+                    padding: 0.3rem;
+                    outline: none;
+                    color: #ccc;
+                    margin-top: 1rem;
+
+                    @include breakpoint(lg){
+                        padding: 0.2rem;
+                        margin-top: 0;
+                    }
+                }
+
+                button {
+                    padding: 0.2rem 1rem;
+                    background-color: #cccccc2a;
+                    border: 1px solid #cccccc2a;
+                    width: 100%;
+                    margin-top: 1rem;
+                    color: #ccc;
+                    cursor: pointer;
+                    @include breakpoint(lg){
+                        margin-left: 1rem;
+                        margin-top: 0px;
+                        width: max-content;
+                    }
+                    &:hover {
+                        background-color: #22224e;
+                        transition: all 0.4s;
+                    }
+
+                }
+            }
+        }
+
+        &_body {
+            margin-top: 1rem;
+            width: 100%;
+            
+            .content {
+                margin-top: 1rem;
+                .content__title {
+                    padding: 0.7rem;
+                    background-color: $backgound__color;
+                    color: #ccc;
+                    text-transform: capitalize;
+                    font-family: 'Courier New', Courier, monospace;
+                    font-size: 0.8rem;
+                    font-weight: bolder;
+                    border: 1px solid #ffffff0e;
+                }
+
+                .content__body {
+                    background-color: $backgound__color;
+                    padding: 0.5rem;
+                    margin-top: 0.1rem;
+                    ul {
+                        display: flex;
+                        flex-direction: column;
+
+                        li {
+                            margin-top: 0.4rem;
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 0.5rem;
+                            border-bottom: 1px solid #dddddd2a;
+                            span {
+                                color: #ffffffc0;
+                                font-family: serif;
+                                font-weight: lighter;
+                                font-size: .9rem;
+                            }
+
+                            span:last-child {
+                                color: #ffffff;
+                                font-weight: lighter;
+                                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                                font-size: 1rem;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

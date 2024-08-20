@@ -32,9 +32,8 @@ namespace GithubScrapper.Controllers
             HtmlNode githubRepositoryCountNode = roodNode.SelectSingleNode("//span[@data-view-component='true' and @class='Counter']");
             HtmlNode githubNickNameNode = roodNode.SelectSingleNode("//span[@class='p-name vcard-fullname d-block overflow-hidden']");
 
-            HtmlNode contributionNode = roodNode.SelectSingleNode("//h2[contains(text(),'contributions')]");
-            string contributionText = contributionNode?.InnerText?.Split(' ')[0];
-            int totalContributions = int.TryParse(contributionText, out int contributions) ? contributions : 0;
+            
+          
 
             var nodeElement = rDoc.DocumentNode.SelectNodes("//div[@class='col-10 col-lg-9 d-inline-block']");
             foreach (var node in nodeElement)
@@ -77,22 +76,29 @@ namespace GithubScrapper.Controllers
             string repositorycount = githubRepositoryCountNode.InnerText;
             string nickname = githubNickNameNode.InnerText;
 
-            string activityLevel = "Az Aktif"; // Default
+          
 
-            if (totalContributions > 5)
-            {
-                activityLevel = "Çok Aktif";
-            }
-            else if (totalContributions > 1)
-            {
-                activityLevel = "Aktif";
-            }
-            ViewBag.activityLevel = activityLevel;
+          
+            
             ViewBag.mostUsedOverallLanguage = mostUsedOverallLanguage;  
             ViewBag.repositoryCount = repositorycount;
             ViewBag.name = name;
             ViewBag.nickname = nickname;
+            ViewBag.paramter = parameter;
+
             return View(repositoryDataList);
+        }
+        public IActionResult RepositoryScrapPage(string parameter, string repoName)
+        {
+            string url = $"https://github.com/{parameter}/{repoName}" ;
+            var web = new HtmlWeb();
+            var doc = web.Load(url);
+
+            HtmlNode roodNode = doc.DocumentNode;
+            HtmlNode repositoryNameNode = roodNode.SelectSingleNode("//strong[@class='mr-2 flex-self-stretch d-none d-md-block no-wrap overflow-x-hidden']");
+            HtmlNode repositoryStarNode = roodNode.SelectSingleNode("//strong[@class='mr-2 flex-self-stretch d-none d-md-block no-wrap overflow-x-hidden']");
+
+            return View();
         }
     }
 }

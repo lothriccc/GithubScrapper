@@ -1,0 +1,12 @@
+{
+  "name": "github",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "sass --watch static/sass:static/css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
