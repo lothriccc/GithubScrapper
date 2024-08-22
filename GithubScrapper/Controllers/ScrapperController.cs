@@ -3,6 +3,7 @@ using HtmlAgilityPack;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
+using System.Xml.Linq;
 
 namespace GithubScrapper.Controllers
 {
@@ -23,7 +24,7 @@ namespace GithubScrapper.Controllers
             var web = new HtmlWeb();
             var doc = web.Load(url);
 
-            var repositoryDataList = new List<RepositoryData>();
+         var repositoryDataList = new List<RepositoryData>();
             string rUrl = $"https://github.com/{parameter}?tab=repositories";
             var rDoc = web.Load(rUrl);
 
@@ -84,20 +85,60 @@ namespace GithubScrapper.Controllers
             ViewBag.repositoryCount = repositorycount;
             ViewBag.name = name;
             ViewBag.nickname = nickname;
-            ViewBag.paramter = parameter;
+            ViewBag.parameter = parameter;
 
             return View(repositoryDataList);
         }
         public IActionResult RepositoryScrapPage(string parameter, string repoName)
         {
-            string url = $"https://github.com/{parameter}/{repoName}" ;
+            string url = $"https://github.com/{parameter}/{repoName}";
             var web = new HtmlWeb();
             var doc = web.Load(url);
 
-            HtmlNode roodNode = doc.DocumentNode;
-            HtmlNode repositoryNameNode = roodNode.SelectSingleNode("//strong[@class='mr-2 flex-self-stretch d-none d-md-block no-wrap overflow-x-hidden']");
-            HtmlNode repositoryStarNode = roodNode.SelectSingleNode("//strong[@class='mr-2 flex-self-stretch d-none d-md-block no-wrap overflow-x-hidden']");
+			HtmlNode roodNode = doc.DocumentNode;
+            //HtmlNode denemeNode = roodNode.SelectSingleNode("//span[@class='Label Label--secondary v-align-middle mr-1 d-none d-md-block']");
 
+            HtmlNode repositoryCommitNode = roodNode.SelectSingleNode("//span[@class='fgColor-default']");
+            HtmlNode repositoryDescriptionNode = roodNode.SelectSingleNode("//p[@class='f4 my-3']");
+
+
+            var colourCodeNodes = roodNode.SelectNodes("//span[@class='Progress-item color-bg-success-emphasis']");
+			var styleValues = new List<string>();
+
+
+			foreach (var node in colourCodeNodes)
+			{
+				string codeValue = node.GetAttributeValue("style", null);
+                string languageValue = node.GetAttributeValue("aria-label", null);
+
+				if (!string.IsNullOrEmpty(codeValue) && !string.IsNullOrEmpty(languageValue))
+				{
+					styleValues.Add(codeValue);
+                    styleValues.Add(languageValue);
+				}
+			}
+
+
+			//Yıldız Sayısı
+			var starNode = roodNode.SelectSingleNode("//a[contains(@href, '/stargazers')]/strong");
+			ViewBag.StarCount = starNode.InnerText.Trim();
+
+			// İzleyici sayısını 
+			var watchersNode = roodNode.SelectSingleNode("//a[contains(@href, '/watchers')]/strong");
+			ViewBag.WatchersCount = watchersNode != null ? watchersNode.InnerText.Trim() : "0";
+			
+
+			string repositoryName = parameter + "/" + repoName;
+            string repositoryCommit = repositoryCommitNode.InnerText;
+            string repositoryDescription = repositoryDescriptionNode != null ? repositoryDescriptionNode.InnerText : "Açıklama Yok";
+
+
+			ViewBag.repositoryDescription = repositoryDescription;
+			ViewBag.StyleValues = styleValues;
+
+			ViewBag.repositoryName = repositoryName;
+            ViewBag.repositoryCommit = repositoryCommit;
+          
             return View();
         }
     }
