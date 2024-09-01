@@ -84,65 +84,40 @@ namespace GithubScrapper.Controllers
 
 			return View(repositoryDataList);
 		}
-		public IActionResult RepositoryScrapPage(string parameter, string repoName)
-		{
-			string url = $"https://github.com/{parameter}/{repoName}";
-			var web = new HtmlWeb();
-			var doc = web.Load(url);
+		//public IActionResult RepositoryScrapPage(string parameter, string repoName)
+		//{
+		//	string url = $"https://github.com/{parameter}/{repoName}";
+		//	var web = new HtmlWeb();
+		//	var doc = web.Load(url);
 
-			HtmlNode roodNode = doc.DocumentNode;
-			//HtmlNode denemeNode = roodNode.SelectSingleNode("//span[@class='Label Label--secondary v-align-middle mr-1 d-none d-md-block']");
+		//	HtmlNode roodNode = doc.DocumentNode;
+		//	//HtmlNode denemeNode = roodNode.SelectSingleNode("//span[@class='Label Label--secondary v-align-middle mr-1 d-none d-md-block']");
 
-			HtmlNode repositoryCommitNode = roodNode.SelectSingleNode("//span[@class='fgColor-default']");
-			HtmlNode repositoryDescriptionNode = roodNode.SelectSingleNode("//p[@class='f4 my-3']");
+		//	HtmlNode repositoryCommitNode = roodNode.SelectSingleNode("//span[@class='fgColor-default']");
+		//	HtmlNode repositoryDescriptionNode = roodNode.SelectSingleNode("//p[@class='f4 my-3']");
 
+		//	//Yıldız Sayısı
+		//	var starNode = roodNode.SelectSingleNode("//a[contains(@href, '/stargazers')]/strong");
+		//	ViewBag.StarCount = starNode.InnerText.Trim();
 
-			var colourCodeNodes = roodNode.SelectNodes("//span[@class='Progress-item color-bg-success-emphasis']");
-			var styleValues = new List<string>();
-
-			if (colourCodeNodes != null) // Null kontrolü
-			{
-				foreach (var node in colourCodeNodes)
-				{
-					string codeValue = node.GetAttributeValue("style", null);
-					string languageValue = node.GetAttributeValue("aria-label", null);
-
-					if (!string.IsNullOrEmpty(codeValue) && !string.IsNullOrEmpty(languageValue))
-					{
-						styleValues.Add(codeValue);
-						styleValues.Add(languageValue);
-					}
-				}
-			}
-			else
-			{
-				ViewBag.ErrorMessage = "Bu repository'de dil yoktur";
-			}
-			ViewBag.StyleValues = styleValues;
+		//	// İzleyici sayısını 
+		//	var watchersNode = roodNode.SelectSingleNode("//a[contains(@href, '/watchers')]/strong");
+		//	ViewBag.WatchersCount = watchersNode != null ? watchersNode.InnerText.Trim() : "0";
 
 
-			//Yıldız Sayısı
-			var starNode = roodNode.SelectSingleNode("//a[contains(@href, '/stargazers')]/strong");
-			ViewBag.StarCount = starNode.InnerText.Trim();
-
-			// İzleyici sayısını 
-			var watchersNode = roodNode.SelectSingleNode("//a[contains(@href, '/watchers')]/strong");
-			ViewBag.WatchersCount = watchersNode != null ? watchersNode.InnerText.Trim() : "0";
+		//	string repositoryName = parameter + "/" + repoName;
+		//	string repositoryCommit = repositoryCommitNode.InnerText;
+		//	string repositoryDescription = repositoryDescriptionNode != null ? repositoryDescriptionNode.InnerText : "Açıklama Yok";
 
 
-			string repositoryName = parameter + "/" + repoName;
-			string repositoryCommit = repositoryCommitNode.InnerText;
-			string repositoryDescription = repositoryDescriptionNode != null ? repositoryDescriptionNode.InnerText : "Açıklama Yok";
-
-
-			ViewBag.repositoryDescription = repositoryDescription;
+		//	ViewBag.repositoryDescription = repositoryDescription;
 			
 
-			ViewBag.repositoryName = repositoryName;
-			ViewBag.repositoryCommit = repositoryCommit;
+		//	ViewBag.repositoryName = repositoryName;
+		//	ViewBag.repositoryCommit = repositoryCommit;
 
-			return View();
-		}
+		//	return View();
+		//}
 		
 	}
 }

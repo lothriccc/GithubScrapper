@@ -63,10 +63,8 @@
 										<span>Güncellenme Tarihi</span>
 										<span>@item.UpdateDate</span>
 									</li>
-									<li>
-
-										<a href="@Url.Action("RepositoryScrapPage", "Scrapper", new { parameter = ViewBag.parameter, repoName = item.RepositoryName })" class="detaylar-buton">Detayları Gör</a>
-									</li>
+									@await Component.InvokeAsync("_RepositoryDetailComponentPartial", new { parameter = ViewBag.parameter, repoName = item.RepositoryName })
+									
 								</ul>
 							</div>
 						</div>
